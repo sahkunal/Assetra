@@ -1,7 +1,10 @@
 use anchor_lang::prelude::*;
+pub mod constants;
 pub mod errors;
+pub mod instructions;
 pub mod state;
-pub mod constant;
+
+use instructions::*;
 
 declare_id!("HaJijGCZjztBgf8jGyfW6sCEskNMfgr73pqtEAExSqpn");
 
@@ -9,11 +12,22 @@ declare_id!("HaJijGCZjztBgf8jGyfW6sCEskNMfgr73pqtEAExSqpn");
 pub mod assetra {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        msg!("Greetings from: {:?}", ctx.program_id);
-        Ok(())
+    pub fn create_track(
+        ctx: Context<CreateTrack>,
+        title: String,
+        isrc: String,
+        cover_art_uri: String,
+        audio_preview_uri: String,
+        declared_annual_revenue: u64,
+    ) -> Result<()> {
+        instructions::create_track::handler(
+            ctx,
+            title,
+            isrc,
+            cover_art_uri,
+            audio_preview_uri,
+            declared_annual_revenue,
+        )
     }
 }
 
-#[derive(Accounts)]
-pub struct Initialize {}
