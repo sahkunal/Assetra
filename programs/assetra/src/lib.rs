@@ -12,6 +12,13 @@ declare_id!("HaJijGCZjztBgf8jGyfW6sCEskNMfgr73pqtEAExSqpn");
 pub mod assetra {
     use super::*;
 
+    pub fn register_creator(
+        ctx: Context<RegisterCreator>,
+        display_name: String,
+        rights_attestation: String,
+    ) -> Result<()> {
+        instructions::register_creator::handler(ctx, display_name, rights_attestation)
+    }
     pub fn create_track(
         ctx: Context<CreateTrack>,
         title: String,

@@ -4,8 +4,6 @@ use crate::errors::*;
 use crate::state::*;
 
 #[derive(Accounts)]
-
-
 pub struct CreateTrack<'info>{
     #[account(mut)]
     pub authority: Signer<'info>,
