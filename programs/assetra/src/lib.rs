@@ -4,7 +4,7 @@ pub mod errors;
 pub mod instructions;
 pub mod state;
 
-use instructions::*;
+use crate ::instructions::*;
 
 declare_id!("HaJijGCZjztBgf8jGyfW6sCEskNMfgr73pqtEAExSqpn");
 
@@ -19,6 +19,7 @@ pub mod assetra {
     ) -> Result<()> {
         instructions::register_creator::handler(ctx, display_name, rights_attestation)
     }
+
     pub fn create_track(
         ctx: Context<CreateTrack>,
         title: String,
@@ -26,6 +27,9 @@ pub mod assetra {
         cover_art_uri: String,
         audio_preview_uri: String,
         declared_annual_revenue: u64,
+        tokenized_bps: u16,
+        valuation_multiple_bps: u32,
+        token_supply: u64,
     ) -> Result<()> {
         instructions::create_track::handler(
             ctx,
@@ -34,7 +38,14 @@ pub mod assetra {
             cover_art_uri,
             audio_preview_uri,
             declared_annual_revenue,
+            tokenized_bps,
+            valuation_multiple_bps,
+            token_supply,
         )
+    }
+
+    pub fn mint_track_tokens(ctx: Context<MintTrackTokens>) -> Result<()> {
+        instructions::mint_track_tokens::handler(ctx)
     }
 }
 
