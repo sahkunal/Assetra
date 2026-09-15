@@ -27,7 +27,7 @@ pub fn handler(
     rights_attestation: String,
 ) -> Result<()> {
     require!(
-        display_name.len() <= MAX_DISPLAY_NAME_LEN,
+        display_name.len() <= MAX_DISPLAY_URI_LEN,
         AssetraError::DisplayNameTooLong
     );
     require!(

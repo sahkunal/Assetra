@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-use crate::constants::{MAX_ISRC_LEN, MAX_TITLE_LEN, MAX_URI_LEN};
+use crate::constants::*;
 use crate::errors::AssetraError;
 use crate::state::{CreatorProfile, Track, TrackStatus};
 
