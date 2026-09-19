@@ -47,5 +47,21 @@ pub mod assetra {
     pub fn mint_track_tokens(ctx: Context<MintTrackTokens>) -> Result<()> {
         instructions::mint_track_tokens::handler(ctx)
     }
+
+     pub fn deposit_revenue(ctx: Context<DepositRevenue>, amount: u64) -> Result<()> {
+        instructions::deposit_revenue::handler(ctx, amount)
+    }
+
+    pub fn open_holder_position(ctx: Context<OpenHolderPosition>) -> Result<()> {
+        instructions::open_holder_position::handler(ctx)
+    }
+
+    pub fn claim_revenue(ctx: Context<ClaimRevenue>) -> Result<()> {
+        instructions::claim_revenue::handler(ctx)
+    }
+
+    pub fn initialize_revenue_pool(ctx: Context<InitializeRevenuePool>) -> Result<()> {
+    instructions::initialize_revenue_pool::handler(ctx)
+}
 }
 

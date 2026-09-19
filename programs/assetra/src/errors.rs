@@ -24,4 +24,10 @@ pub enum AssetraError {
     InvalidValuationMultiple,
     #[msg("Token supply must be greater than zero.")]
     InvalidTokenSupply,
+    #[msg("Deposit amount must be greater than zero.")]
+    InvalidDepositAmount,
+    #[msg("Nothing to claim — no rewards have accrued since the last claim.")]
+    NothingToClaim,
+    #[msg("Revenue pool balance is insufficient to cover this claim while staying rent-exempt.")]
+    InsufficientRevenuePoolBalance,
 }

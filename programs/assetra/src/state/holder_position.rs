@@ -5,7 +5,7 @@ use crate:: constants::SEED_HOLDER_POSITION;
 pub struct HolderPosition{
     pub track: Pubkey,
     pub holder: Pubkey,
-    pub last_accumulated_rewaard_per_token: u128,
+    pub last_accumulated_rewards_per_token: u128,
     pub total_claimed: u64,
     pub bump: u8,
 }

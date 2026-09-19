@@ -4,7 +4,7 @@ use crate:: constants::SEED_REVENUE_POOL;
 #[account]
 pub struct RevenuePool{
     pub track: Pubkey,
-    pub total_deposited: Pubkey,
+    pub total_deposited: u64,
     pub accumulated_rewards_per_token: u128,
     pub bump : u8,
 }

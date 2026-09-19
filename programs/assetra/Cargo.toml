@@ -21,8 +21,8 @@ idl-build = [
 
 
 [dependencies]
-anchor-lang = { version = "0.32.1", features = ["init-if-needed"] }
-anchor-spl = { version = "0.32.1", features = ["token_2022"] }
+anchor-lang = { version = "1", features = ["init-if-needed"] }
+anchor-spl = { version = "1",  default-features = false, features = ["mint", "token_2022", "associated_token"]  }
 
 
 [dev-dependencies]
