@@ -6,9 +6,9 @@ use crate::constants::*;
 pub struct CreatorProfile{
     pub authority: Pubkey,
     pub display_name: String,
-    pub rights_attestatiioin : String,
+    pub rights_attestatioin : String,
     pub self_attested: String,
-    pub admin_verification: bool,
+    pub admin_verified: bool,
     pub track_count: u64,
     pub created_at: u64,
     pub bump: u8,
@@ -17,5 +17,5 @@ pub struct CreatorProfile{
 impl CreatorProfile{
     pub const SEED_PREFIX: &'static [u8] = SEED_CREATOR_PROFILE;
     pub const SPACE: usize= 8
-    +32 +4 + MAX_DISPLAY_URI_LEN + 4 + MAX_ATTESTATION_LEN +1+1+8+8+1;
+    +32 +4 + MAX_DISPLAY_NAME_LEN + 4 + MAX_ATTESTATION_LEN +1+1+8+8+1;
 }

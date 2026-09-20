@@ -2,7 +2,7 @@ mod common;
 
 use anchor_lang::AccountDeserialize;
 use assetra::state::{Track, TrackStatus};
-use solana_sdk::{pubkey::Pubkey, signature::Signer};
+use anchor_lang::prelude::Pubkey;
 
 use common::{create_track_ix, mint_track_tokens_ix, register_creator_ix, TestContext, TOKEN_2022_PROGRAM_ID};
 

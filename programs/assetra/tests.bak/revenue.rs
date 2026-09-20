@@ -2,7 +2,9 @@ mod common;
 
 use anchor_lang::AccountDeserialize;
 use assetra::state::{HolderPosition, RevenuePool};
-use solana_sdk::{pubkey::Pubkey, signature::Signer};
+use solana_keypair::Keypair;
+use solana_pubkey::Pubkey;
+use solana_signer::Signer;
 
 use common::{
     claim_revenue_ix, create_track_ix, deposit_revenue_ix, initialize_revenue_pool_ix,
@@ -97,7 +99,7 @@ fn holder_position_checkpoints_to_current_accumulator_not_zero() {
     // A deposit happens BEFORE this holder ever acquires tokens.
     ctx.send_ix(deposit_revenue_ix(ctx.program_id, authority, track, revenue_pool, 1_000_000), &[]);
 
-    let holder = solana_sdk::signature::Keypair::new();
+    let holder = Keypair::new();
     ctx.svm.airdrop(&holder.pubkey(), 1_000_000_000).unwrap();
 
     let holder_token_account = Pubkey::new_unique();
@@ -131,7 +133,7 @@ fn claim_revenue_pays_correct_pro_rata_share() {
     let (track, mint) = setup_minted_track_with_pool(&mut ctx);
     let (revenue_pool, _) = revenue_pool_pda(&ctx.program_id, &track);
 
-    let holder = solana_sdk::signature::Keypair::new();
+    let holder = Keypair::new();
     ctx.svm.airdrop(&holder.pubkey(), 1_000_000_000).unwrap();
     let holder_token_account = Pubkey::new_unique();
     // Holder owns 10,000 of the 100,000 supply (10%).
@@ -170,7 +172,7 @@ fn claim_revenue_rejects_second_claim_with_nothing_new_accrued() {
     let (track, mint) = setup_minted_track_with_pool(&mut ctx);
     let (revenue_pool, _) = revenue_pool_pda(&ctx.program_id, &track);
 
-    let holder = solana_sdk::signature::Keypair::new();
+    let holder = Keypair::new();
     ctx.svm.airdrop(&holder.pubkey(), 1_000_000_000).unwrap();
     let holder_token_account = Pubkey::new_unique();
     common::seed_token_account(&mut ctx.svm, holder_token_account, mint, holder.pubkey(), 10_000);

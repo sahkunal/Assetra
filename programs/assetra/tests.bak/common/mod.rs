@@ -1,11 +1,10 @@
 
-use anchor_lang::{InstructionData, ToAccountMetas};
+use anchor_lang::{system_program, InstructionData, ToAccountMetas};
 use litesvm::LiteSVM;
 use solana_sdk::{
     instruction::Instruction,
     pubkey::Pubkey,
     signature::{Keypair, Signer},
-    system_program,
     transaction::Transaction,
 };
 
@@ -29,7 +28,7 @@ impl TestContext {
         svm.add_program_from_file(program_id, PROGRAM_SO_PATH)
             .expect("failed to load assetra.so — did you run `anchor build` first?");
 
-        litesvm_token::add_token_2022_program(&mut svm);
+        litesvm_token::add_token_program(&mut svm);
 
         let payer = Keypair::new();
         svm.airdrop(&payer.pubkey(), 10_000_000_000) // 10 SOL

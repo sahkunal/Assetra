@@ -2,7 +2,7 @@ mod common;
 
 use anchor_lang::AccountDeserialize;
 use assetra::state::{CreatorProfile, Track, TrackStatus};
-use solana_sdk::{pubkey::Pubkey, signature::Signer};
+use anchor_lang::prelude::Pubkey;
 
 use common::{create_track_ix, register_creator_ix, TestContext};
 
@@ -45,7 +45,7 @@ fn register_creator_succeeds_and_sets_expected_fields() {
     assert_eq!(profile.authority, authority);
     assert_eq!(profile.display_name, "Test Artist");
     assert_eq!(profile.self_attested, "I own the master and publishing for my catalog.");
-    assert!(profile.admin_verified.is_empty()); // never auto-set — matches the design note
+    assert!(!profile.admin_verified); // never auto-set — matches the design note
     assert_eq!(profile.track_count, 0);
 }
 

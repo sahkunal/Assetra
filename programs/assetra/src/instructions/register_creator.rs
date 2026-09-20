@@ -27,7 +27,7 @@ pub fn handler(
     rights_attestation: String,
 ) -> Result<()> {
     require!(
-        display_name.len() <= MAX_DISPLAY_URI_LEN,
+        display_name.len() <= MAX_DISPLAY_NAME_LEN,
         AssetraError::DisplayNameTooLong
     );
     require!(
@@ -38,9 +38,9 @@ pub fn handler(
     let profile = &mut ctx.accounts.creator_profile;
     profile.authority = ctx.accounts.authority.key();
     profile.display_name = display_name;
-    profile.rights_attestatiioin = rights_attestation;
+    profile.rights_attestatioin = rights_attestation;
     profile.self_attested = true.to_string();
-    profile.admin_verification = false; // set later by a separate admin-gated ix
+    profile.admin_verified = false; // set later by a separate admin-gated ix
     profile.track_count = 0;
     profile.created_at = Clock::get()?.unix_timestamp as u64;
     profile.bump = ctx.bumps.creator_profile;

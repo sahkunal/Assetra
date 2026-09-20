@@ -10,7 +10,7 @@ pub const SEED_LISTING: &[u8] = b"listing";
 
 pub const REVENUE_PRECISION: u128 = 1_000_000_000_000; // 10^12
 
-pub const MAX_DISPLAY_URI_LEN: usize = 64;
+pub const MAX_DISPLAY_NAME_LEN: usize = 64;
 pub const MAX_ATTESTATION_LEN: usize = 280;
 pub const MAX_TITLE_LEN: usize = 100;
 pub const MAX_ISRC_LEN: usize = 15;
