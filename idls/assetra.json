@@ -1,0 +1,1020 @@
+{
+  "address": "4d12U8m27YFKwReRAsRQKrF7aoJ5W8mz3FsVYGUXJLAG",
+  "metadata": {
+    "name": "assetra",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Assetra — Music RWA marketplace: royalty-revenue tokenization on Solana"
+  },
+  "instructions": [
+    {
+      "name": "claim_revenue",
+      "discriminator": [
+        4,
+        22,
+        151,
+        70,
+        183,
+        79,
+        73,
+        189
+      ],
+      "accounts": [
+        {
+          "name": "holder",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "holder_position"
+          ]
+        },
+        {
+          "name": "track",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  97,
+                  99,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track.creator",
+                "account": "Track"
+              },
+              {
+                "kind": "account",
+                "path": "track.track_id",
+                "account": "Track"
+              }
+            ]
+          }
+        },
+        {
+          "name": "holder_token_account"
+        },
+        {
+          "name": "revenue_pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  118,
+                  101,
+                  110,
+                  117,
+                  101,
+                  95,
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track"
+              }
+            ]
+          }
+        },
+        {
+          "name": "holder_position",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  111,
+                  108,
+                  100,
+                  101,
+                  114,
+                  95,
+                  112,
+                  111,
+                  115,
+                  105,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track"
+              },
+              {
+                "kind": "account",
+                "path": "holder"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_track",
+      "discriminator": [
+        29,
+        23,
+        82,
+        43,
+        136,
+        128,
+        152,
+        240
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "creator_profile"
+          ]
+        },
+        {
+          "name": "creator_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  101,
+                  97,
+                  116,
+                  111,
+                  114,
+                  95,
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "authority"
+              }
+            ]
+          }
+        },
+        {
+          "name": "track",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  97,
+                  99,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "authority"
+              },
+              {
+                "kind": "account",
+                "path": "creator_profile.track_count",
+                "account": "CreatorProfile"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "isrc",
+          "type": "string"
+        },
+        {
+          "name": "cover_art_uri",
+          "type": "string"
+        },
+        {
+          "name": "audio_preview_uri",
+          "type": "string"
+        },
+        {
+          "name": "declared_annual_revenue",
+          "type": "u64"
+        },
+        {
+          "name": "tokenized_bps",
+          "type": "u16"
+        },
+        {
+          "name": "valuation_multiple_bps",
+          "type": "u32"
+        },
+        {
+          "name": "token_supply",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "deposit_revenue",
+      "discriminator": [
+        224,
+        212,
+        82,
+        100,
+        60,
+        240,
+        220,
+        29
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "track",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  97,
+                  99,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track.creator",
+                "account": "Track"
+              },
+              {
+                "kind": "account",
+                "path": "track.track_id",
+                "account": "Track"
+              }
+            ]
+          }
+        },
+        {
+          "name": "revenue_pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  118,
+                  101,
+                  110,
+                  117,
+                  101,
+                  95,
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "initialize_revenue_pool",
+      "discriminator": [
+        35,
+        162,
+        29,
+        41,
+        116,
+        26,
+        10,
+        239
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "track",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  97,
+                  99,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track.creator",
+                "account": "Track"
+              },
+              {
+                "kind": "account",
+                "path": "track.track_id",
+                "account": "Track"
+              }
+            ]
+          }
+        },
+        {
+          "name": "revenue_pool",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  118,
+                  101,
+                  110,
+                  117,
+                  101,
+                  95,
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "mint_track_tokens",
+      "discriminator": [
+        121,
+        184,
+        240,
+        92,
+        205,
+        163,
+        162,
+        121
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "track",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  97,
+                  99,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track.creator",
+                "account": "Track"
+              },
+              {
+                "kind": "account",
+                "path": "track.track_id",
+                "account": "Track"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "open_holder_position",
+      "discriminator": [
+        154,
+        198,
+        206,
+        206,
+        70,
+        114,
+        161,
+        227
+      ],
+      "accounts": [
+        {
+          "name": "holder",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "track",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  114,
+                  97,
+                  99,
+                  107
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track.creator",
+                "account": "Track"
+              },
+              {
+                "kind": "account",
+                "path": "track.track_id",
+                "account": "Track"
+              }
+            ]
+          }
+        },
+        {
+          "name": "holder_token_account"
+        },
+        {
+          "name": "revenue_pool",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  118,
+                  101,
+                  110,
+                  117,
+                  101,
+                  95,
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track"
+              }
+            ]
+          }
+        },
+        {
+          "name": "holder_position",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  104,
+                  111,
+                  108,
+                  100,
+                  101,
+                  114,
+                  95,
+                  112,
+                  111,
+                  115,
+                  105,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "track"
+              },
+              {
+                "kind": "account",
+                "path": "holder"
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "register_creator",
+      "discriminator": [
+        85,
+        3,
+        194,
+        210,
+        164,
+        140,
+        160,
+        195
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "creator_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  114,
+                  101,
+                  97,
+                  116,
+                  111,
+                  114,
+                  95,
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "authority"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "display_name",
+          "type": "string"
+        },
+        {
+          "name": "rights_attestation",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "CreatorProfile",
+      "discriminator": [
+        251,
+        250,
+        184,
+        111,
+        214,
+        178,
+        32,
+        221
+      ]
+    },
+    {
+      "name": "HolderPosition",
+      "discriminator": [
+        48,
+        115,
+        169,
+        131,
+        27,
+        29,
+        223,
+        126
+      ]
+    },
+    {
+      "name": "RevenuePool",
+      "discriminator": [
+        207,
+        111,
+        81,
+        33,
+        143,
+        210,
+        93,
+        113
+      ]
+    },
+    {
+      "name": "Track",
+      "discriminator": [
+        148,
+        45,
+        9,
+        235,
+        14,
+        15,
+        36,
+        159
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "DisplayNameTooLong",
+      "msg": "Display name exceeds the maximum allowed length."
+    },
+    {
+      "code": 6001,
+      "name": "AttestationTooLong",
+      "msg": "Rights attestation exceeds the maximum allowed length."
+    },
+    {
+      "code": 6002,
+      "name": "TitleTooLong",
+      "msg": "Title exceeds the maximum allowed length."
+    },
+    {
+      "code": 6003,
+      "name": "IsrcTooLong",
+      "msg": "ISRC code exceeds the maximum allowed length."
+    },
+    {
+      "code": 6004,
+      "name": "UriTooLong",
+      "msg": "URI exceeds the maximum allowed length."
+    },
+    {
+      "code": 6005,
+      "name": "InvalidDeclaredRevenue",
+      "msg": "Declared annual revenue must be greater than zero."
+    },
+    {
+      "code": 6006,
+      "name": "InvalidTrackStatus",
+      "msg": "This track is not in the expected status for this instruction."
+    },
+    {
+      "code": 6007,
+      "name": "Unauthorized",
+      "msg": "Only the track's creator may perform this action."
+    },
+    {
+      "code": 6008,
+      "name": "InvalidTokenizedBps",
+      "msg": "Tokenized basis points must be between 1 and 10000 (0.01%-100%)."
+    },
+    {
+      "code": 6009,
+      "name": "InvalidValuationMultiple",
+      "msg": "Valuation multiple must be greater than zero."
+    },
+    {
+      "code": 6010,
+      "name": "InvalidTokenSupply",
+      "msg": "Token supply must be greater than zero."
+    },
+    {
+      "code": 6011,
+      "name": "InvalidDepositAmount",
+      "msg": "Deposit amount must be greater than zero."
+    },
+    {
+      "code": 6012,
+      "name": "NothingToClaim",
+      "msg": "Nothing to claim — no rewards have accrued since the last claim."
+    },
+    {
+      "code": 6013,
+      "name": "InsufficientRevenuePoolBalance",
+      "msg": "Revenue pool balance is insufficient to cover this claim while staying rent-exempt."
+    }
+  ],
+  "types": [
+    {
+      "name": "CreatorProfile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "display_name",
+            "type": "string"
+          },
+          {
+            "name": "rights_attestatioin",
+            "type": "string"
+          },
+          {
+            "name": "self_attested",
+            "type": "string"
+          },
+          {
+            "name": "admin_verified",
+            "type": "bool"
+          },
+          {
+            "name": "track_count",
+            "type": "u64"
+          },
+          {
+            "name": "created_at",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "HolderPosition",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "track",
+            "type": "pubkey"
+          },
+          {
+            "name": "holder",
+            "type": "pubkey"
+          },
+          {
+            "name": "last_accumulated_rewards_per_token",
+            "type": "u128"
+          },
+          {
+            "name": "total_claimed",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RevenuePool",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "track",
+            "type": "pubkey"
+          },
+          {
+            "name": "total_deposited",
+            "type": "u64"
+          },
+          {
+            "name": "accumulated_rewards_per_token",
+            "type": "u128"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Track",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "track_id",
+            "type": "u64"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "isrc",
+            "type": "string"
+          },
+          {
+            "name": "cover_art_uri",
+            "type": "string"
+          },
+          {
+            "name": "audio_preview_uri",
+            "type": "string"
+          },
+          {
+            "name": "declared_annual_revenue",
+            "type": "u64"
+          },
+          {
+            "name": "tokenized_bps",
+            "type": "u16"
+          },
+          {
+            "name": "valuation_multiple_bps",
+            "type": "u32"
+          },
+          {
+            "name": "token_supply",
+            "type": "u64"
+          },
+          {
+            "name": "mint",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "vault",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "TrackStatus"
+              }
+            }
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TrackStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Registered"
+          },
+          {
+            "name": "Configured"
+          },
+          {
+            "name": "Minted"
+          }
+        ]
+      }
+    }
+  ]
+}

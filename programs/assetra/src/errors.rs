@@ -30,4 +30,14 @@ pub enum AssetraError {
     NothingToClaim,
     #[msg("Revenue pool balance is insufficient to cover this claim while staying rent-exempt.")]
     InsufficientRevenuePoolBalance,
+    #[msg("Purchase amount must be greater than zero.")]
+    InvalidPurchaseAmount,
+    #[msg("Vault does not hold enough unsold tokens to cover this purchase.")]
+    InsufficientVaultSupply,
+    #[msg("Listing amount must be greater than zero.")]
+    InvalidListingAmount,
+    #[msg("Listing price per token must be greater than zero.")]
+    InvalidListingPrice,
+    #[msg("Seller does not hold enough tokens to cover this listing.")]
+    InsufficientListedBalance,
 }

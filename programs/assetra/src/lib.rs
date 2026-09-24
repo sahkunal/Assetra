@@ -52,10 +52,6 @@ pub mod assetra {
         instructions::deposit_revenue::handler(ctx, amount)
     }
 
-    pub fn open_holder_position(ctx: Context<OpenHolderPosition>) -> Result<()> {
-        instructions::open_holder_position::handler(ctx)
-    }
-
     pub fn claim_revenue(ctx: Context<ClaimRevenue>) -> Result<()> {
         instructions::claim_revenue::handler(ctx)
     }
@@ -63,5 +59,26 @@ pub mod assetra {
     pub fn initialize_revenue_pool(ctx: Context<InitializeRevenuePool>) -> Result<()> {
     instructions::initialize_revenue_pool::handler(ctx)
 }
+
+pub fn buy_resale(ctx: Context<BuyResale>) -> Result<()> {
+        instructions::buy_resale::handler(ctx)
+    }
+
+    pub fn list_resale(
+        ctx: Context<ListResale>,
+        amount: u64,
+        price_per_token: u64,
+        nonce: u64,
+    ) -> Result<()> {
+        instructions::list_resale::handler(ctx, amount, price_per_token, nonce)
+    }
+
+pub fn buy_tokens(ctx: Context<BuyTokens>, amount: u64) -> Result<()> {
+        instructions::buy_tokens::handler(ctx, amount)
+    }
+
+    pub fn cancel_resale(ctx: Context<CancelResale>) -> Result<()> {
+        instructions::cancel_resale::handler(ctx)
+    }
 }
 
