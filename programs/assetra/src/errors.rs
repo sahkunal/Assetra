@@ -1,5 +1,7 @@
 use anchor_lang::prelude::*;
 
+use crate::errors::AssetraError::Unauthorized;
+
 #[error_code]
 pub enum AssetraError {
     #[msg("Display name exceeds the maximum allowed length.")]

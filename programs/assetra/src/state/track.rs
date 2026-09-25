@@ -28,7 +28,6 @@ pub struct Track {
 
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, Copy, PartialEq, Eq, Debug)]
 pub enum TrackStatus {
-    Registered,   
     Configured,   
     Minted,       
 }

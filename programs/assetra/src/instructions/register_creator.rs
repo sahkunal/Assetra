@@ -38,11 +38,11 @@ pub fn handler(
     let profile = &mut ctx.accounts.creator_profile;
     profile.authority = ctx.accounts.authority.key();
     profile.display_name = display_name;
-    profile.rights_attestatioin = rights_attestation;
-    profile.self_attested = true.to_string();
+    profile.rights_attestation = rights_attestation;
+    profile.self_attested = true;
     profile.admin_verified = false; // set later by a separate admin-gated ix
     profile.track_count = 0;
-    profile.created_at = Clock::get()?.unix_timestamp as u64;
+    profile.created_at = Clock::get()?.unix_timestamp;
     profile.bump = ctx.bumps.creator_profile;
 
     Ok(())
