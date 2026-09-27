@@ -1,5 +1,6 @@
 use anchor_lang::prelude::*;
-use crate:: constants::SEED_HOLDER_POSITION;
+
+use crate::constants::{SEED_HOLDER_POSITION, REVENUE_PRECISION};
 
 #[account]
 pub struct HolderPosition {
@@ -11,17 +12,19 @@ pub struct HolderPosition {
     pub bump: u8,
 }
 
-impl HolderPosition{
-    pub const SEED_PREFIX: &'static [u8] =SEED_HOLDER_POSITION;
+impl HolderPosition {
+    pub const SEED_PREFIX: &'static [u8] = SEED_HOLDER_POSITION;
 
-    pub const SPACE: usize= 8 
-    +32
-    +32
-    +16
-    +8
-    +1;
+    pub const SPACE: usize = 8 // discriminator
+        + 32 // track
+        + 32 // holder
+        + 16 // reward_debt
+        + 8  // unclaimed_rewards
+        + 8  // total_claimed
+        + 1; // bump
 
-     pub fn settle(&mut self, balance: u64, acc_per_token_now: u128) {
+   
+    pub fn settle(&mut self, balance: u64, acc_per_token_now: u128) {
         let accrued_scaled = (balance as u128)
             .checked_mul(acc_per_token_now)
             .expect("settle: balance * accumulator overflow");
