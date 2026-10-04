@@ -1,9 +1,9 @@
 use anchor_lang::prelude::*;
 
-use crate:: constants::*;
+use crate::constants::*;
 
 #[account]
-pub struct Listing{
+pub struct Listing {
     pub track: Pubkey,
     pub seller: Pubkey,
     pub mint: Pubkey,
@@ -12,7 +12,7 @@ pub struct Listing{
     pub nonce: u64,
     pub bump: u8,
 }
-impl Listing{
+impl Listing {
     pub const SEED_PREFIX: &'static [u8] = SEED_LISTING;
 
     pub const SPACE: usize = 8 // discriminator

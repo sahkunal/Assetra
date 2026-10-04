@@ -5,7 +5,7 @@ use crate::constants::{MAX_ISRC_LEN, MAX_TITLE_LEN, MAX_URI_LEN, SEED_TRACK};
 #[account]
 pub struct Track {
     pub creator: Pubkey,
-  
+
     pub track_id: u64,
 
     pub title: String,
@@ -28,8 +28,8 @@ pub struct Track {
 
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, Copy, PartialEq, Eq, Debug)]
 pub enum TrackStatus {
-    Configured,   
-    Minted,       
+    Configured,
+    Minted,
 }
 
 impl Track {

@@ -47,13 +47,22 @@ pub fn handler(
     require!(title.len() <= MAX_TITLE_LEN, AssetraError::TitleTooLong);
     require!(isrc.len() <= MAX_ISRC_LEN, AssetraError::IsrcTooLong);
     require!(cover_art_uri.len() <= MAX_URI_LEN, AssetraError::UriTooLong);
-    require!(audio_preview_uri.len() <= MAX_URI_LEN, AssetraError::UriTooLong);
-    require!(declared_annual_revenue > 0, AssetraError::InvalidDeclaredRevenue);
+    require!(
+        audio_preview_uri.len() <= MAX_URI_LEN,
+        AssetraError::UriTooLong
+    );
+    require!(
+        declared_annual_revenue > 0,
+        AssetraError::InvalidDeclaredRevenue
+    );
     require!(
         tokenized_bps > 0 && tokenized_bps <= 10_000,
         AssetraError::InvalidTokenizedBps
     );
-    require!(valuation_multiple_bps > 0, AssetraError::InvalidValuationMultiple);
+    require!(
+        valuation_multiple_bps > 0,
+        AssetraError::InvalidValuationMultiple
+    );
     require!(token_supply > 0, AssetraError::InvalidTokenSupply);
 
     let creator_profile = &mut ctx.accounts.creator_profile;

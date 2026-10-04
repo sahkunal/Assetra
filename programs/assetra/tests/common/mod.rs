@@ -31,7 +31,6 @@ pub fn token_2022_program_id() -> Pubkey {
     anchor_spl::token_2022::ID
 }
 
-
 pub fn creator_profile_pda(program_id: &Pubkey, authority: &Pubkey) -> Pubkey {
     Pubkey::find_program_address(&[b"creator_profile", authority.as_ref()], program_id).0
 }
@@ -54,7 +53,7 @@ pub fn vault_pda(program_id: &Pubkey, track: &Pubkey) -> Pubkey {
 
 pub fn revenue_pool_pda(program_id: &Pubkey, track: &Pubkey) -> Pubkey {
     Pubkey::find_program_address(&[b"revenue_pool", track.as_ref()], program_id).0
-} 
+}
 
 pub fn holder_position_pda(program_id: &Pubkey, track: &Pubkey, holder: &Pubkey) -> Pubkey {
     Pubkey::find_program_address(

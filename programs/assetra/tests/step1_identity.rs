@@ -123,7 +123,10 @@ fn create_track_sets_metadata_and_tokenization_in_one_call() {
     assert_eq!(track_state.valuation_multiple_bps, 500);
     assert_eq!(track_state.token_supply, 100_000);
     assert_eq!(track_state.mint, None);
-    assert_eq!(track_state.status, ::assetra::state::TrackStatus::Configured);
+    assert_eq!(
+        track_state.status,
+        ::assetra::state::TrackStatus::Configured
+    );
 
     let profile: ::assetra::state::CreatorProfile = ctx.get_account(&creator_profile).unwrap();
     assert_eq!(profile.track_count, 1);

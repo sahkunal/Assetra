@@ -4,7 +4,7 @@ pub mod errors;
 pub mod instructions;
 pub mod state;
 
-use crate ::instructions::*;
+use crate::instructions::*;
 
 declare_id!("FmS7DSf1d5KGNQtVy6usXFaHi7fNnTtiJofHZSQzGKYi");
 
@@ -48,7 +48,7 @@ pub mod assetra {
         instructions::mint_track_tokens::handler(ctx)
     }
 
-     pub fn deposit_revenue(ctx: Context<DepositRevenue>, amount: u64) -> Result<()> {
+    pub fn deposit_revenue(ctx: Context<DepositRevenue>, amount: u64) -> Result<()> {
         instructions::deposit_revenue::handler(ctx, amount)
     }
 
@@ -57,10 +57,10 @@ pub mod assetra {
     }
 
     pub fn initialize_revenue_pool(ctx: Context<InitializeRevenuePool>) -> Result<()> {
-    instructions::initialize_revenue_pool::handler(ctx)
-}
+        instructions::initialize_revenue_pool::handler(ctx)
+    }
 
-pub fn buy_resale(ctx: Context<BuyResale>) -> Result<()> {
+    pub fn buy_resale(ctx: Context<BuyResale>) -> Result<()> {
         instructions::buy_resale::handler(ctx)
     }
 
@@ -73,7 +73,7 @@ pub fn buy_resale(ctx: Context<BuyResale>) -> Result<()> {
         instructions::list_resale::handler(ctx, amount, price_per_token, nonce)
     }
 
-pub fn buy_tokens(ctx: Context<BuyTokens>, amount: u64) -> Result<()> {
+    pub fn buy_tokens(ctx: Context<BuyTokens>, amount: u64) -> Result<()> {
         instructions::buy_tokens::handler(ctx, amount)
     }
 
@@ -81,4 +81,3 @@ pub fn buy_tokens(ctx: Context<BuyTokens>, amount: u64) -> Result<()> {
         instructions::cancel_resale::handler(ctx)
     }
 }
-

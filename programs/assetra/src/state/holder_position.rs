@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-use crate::constants::{SEED_HOLDER_POSITION, REVENUE_PRECISION};
+use crate::constants::{REVENUE_PRECISION, SEED_HOLDER_POSITION};
 
 #[account]
 pub struct HolderPosition {
@@ -23,7 +23,6 @@ impl HolderPosition {
         + 8  // total_claimed
         + 1; // bump
 
-   
     pub fn settle(&mut self, balance: u64, acc_per_token_now: u128) {
         let accrued_scaled = (balance as u128)
             .checked_mul(acc_per_token_now)

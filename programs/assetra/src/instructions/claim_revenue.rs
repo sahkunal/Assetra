@@ -61,7 +61,11 @@ pub fn handler(ctx: Context<ClaimRevenue>) -> Result<()> {
     );
 
     **pool_ai.try_borrow_mut_lamports()? -= pending;
-    **ctx.accounts.holder.to_account_info().try_borrow_mut_lamports()? += pending;
+    **ctx
+        .accounts
+        .holder
+        .to_account_info()
+        .try_borrow_mut_lamports()? += pending;
 
     position.unclaimed_rewards = 0;
     position.total_claimed = position

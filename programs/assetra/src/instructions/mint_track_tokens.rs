@@ -1,12 +1,12 @@
 use anchor_lang::prelude::*;
 
-use anchor_spl::token_interface::{self, Mint, MintTo, TokenAccount, TokenInterface};
 use crate::constants::*;
 use crate::errors::*;
-use crate ::state::*;
+use crate::state::*;
+use anchor_spl::token_interface::{self, Mint, MintTo, TokenAccount, TokenInterface};
 
 #[derive(Accounts)]
-pub struct MintTrackTokens<'info>{
+pub struct MintTrackTokens<'info> {
     #[account(mut)]
     pub authority: Signer<'info>,
 
@@ -19,7 +19,7 @@ pub struct MintTrackTokens<'info>{
         constraint= track.creator == authority.key() @AssetraError::Unauthorized,
         constraint= track.status == TrackStatus::Configured @AssetraError::InvalidTrackStatus,
     )]
-    pub track:Account<'info, Track>,
+    pub track: Account<'info, Track>,
 
     #[account(
         init,
@@ -47,12 +47,12 @@ pub struct MintTrackTokens<'info>{
     pub system_program: Program<'info, System>,
 }
 
-pub fn handler(ctx: Context<MintTrackTokens>)->Result<()>{
-    let track= &ctx.accounts.track;
-    let supply= track.token_supply;
-    let creator= track.creator;
-    let track_id_bytes= track.track_id.to_le_bytes();
-    let bump= track.bump;
+pub fn handler(ctx: Context<MintTrackTokens>) -> Result<()> {
+    let track = &ctx.accounts.track;
+    let supply = track.token_supply;
+    let creator = track.creator;
+    let track_id_bytes = track.track_id.to_le_bytes();
+    let bump = track.bump;
     let signer_seeds: &[&[u8]] = &[
         Track::SEED_PREFIX,
         creator.as_ref(),
@@ -62,13 +62,13 @@ pub fn handler(ctx: Context<MintTrackTokens>)->Result<()>{
 
     token_interface::mint_to(
         CpiContext::new_with_signer(
-         ctx.accounts.token_program.key(),
-         MintTo{
-            mint: ctx.accounts.mint.to_account_info(),
-            to : ctx.accounts.vault.to_account_info(),
-            authority: ctx.accounts.track.to_account_info(),
-         },
-         &[signer_seeds],  
+            ctx.accounts.token_program.key(),
+            MintTo {
+                mint: ctx.accounts.mint.to_account_info(),
+                to: ctx.accounts.vault.to_account_info(),
+                authority: ctx.accounts.track.to_account_info(),
+            },
+            &[signer_seeds],
         ),
         supply,
     )?;

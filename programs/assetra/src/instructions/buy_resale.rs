@@ -1,18 +1,18 @@
 use anchor_lang::prelude::*;
-use anchor_lang:: system_program::{self, Transfer as SystemTransfer};
-use anchor_spl:: associated_token::AssociatedToken;
+use anchor_lang::system_program::{self, Transfer as SystemTransfer};
+use anchor_spl::associated_token::AssociatedToken;
 use anchor_spl::token_interface::{self, Mint, TokenAccount, TokenInterface, TransferChecked};
 
 use crate::constants::*;
-use crate::state::*;
 use crate::errors::AssetraError;
+use crate::state::*;
 
 #[derive(Accounts)]
-pub struct BuyResale<'info>{
+pub struct BuyResale<'info> {
     #[account(mut)]
     pub buyer: Signer<'info>,
 
-    ///CHECK: 
+    ///CHECK:
     #[account(mut,
     address = listing.seller)]
     pub seller: UncheckedAccount<'info>,
@@ -81,13 +81,11 @@ pub struct BuyResale<'info>{
         close = seller,
     )]
     pub listing: Box<Account<'info, Listing>>,
-    
 
     pub system_program: Program<'info, System>,
     pub token_program: Interface<'info, TokenInterface>,
     pub associated_token_program: Program<'info, AssociatedToken>,
 }
-
 
 pub fn handler(ctx: Context<BuyResale>) -> Result<()> {
     let listing = &ctx.accounts.listing;
