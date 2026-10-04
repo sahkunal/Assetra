@@ -25,7 +25,7 @@ pub struct BuyResale<'info>{
         ],
         bump= track.bump,
     )]
-    pub track:Account<'info, Track>,
+    pub track: Box<Account<'info, Track>>,
 
     #[account(
         mut,
@@ -33,7 +33,7 @@ pub struct BuyResale<'info>{
         token::authority= seller,
         token::token_program= token_program,
     )]
-    pub seller_token_account: InterfaceAccount<'info, TokenAccount>,
+    pub seller_token_account: Box<InterfaceAccount<'info, TokenAccount>>,
 
     #[account(
         init_if_needed,
@@ -43,16 +43,16 @@ pub struct BuyResale<'info>{
         associated_token::token_program = token_program,
         constraint = buyer_token_account.key() != seller_token_account.key() @ AssetraError::Unauthorized,
     )]
-    pub buyer_token_account: InterfaceAccount<'info, TokenAccount>,
+    pub buyer_token_account: Box<InterfaceAccount<'info, TokenAccount>>,
 
-    pub mint: InterfaceAccount<'info, Mint>,
+    pub mint: Box<InterfaceAccount<'info, Mint>>,
 
     #[account(
         seeds= [RevenuePool::SEED_PREFIX, track.key().as_ref()],
         bump= revenue_pool.bump,
         constraint= revenue_pool.track== track.key(),
     )]
-    pub revenue_pool: Account<'info, RevenuePool>,
+    pub revenue_pool: Box<Account<'info, RevenuePool>>,
 
     #[account(
         mut,
@@ -61,7 +61,7 @@ pub struct BuyResale<'info>{
         constraint = seller_holder_position.holder == seller.key(),
         constraint = seller_holder_position.track == track.key(),
     )]
-    pub seller_holder_position: Account<'info, HolderPosition>,
+    pub seller_holder_position: Box<Account<'info, HolderPosition>>,
 
     #[account(
         init_if_needed,
@@ -70,7 +70,7 @@ pub struct BuyResale<'info>{
         seeds = [SEED_HOLDER_POSITION, track.key().as_ref(), buyer.key().as_ref()],
         bump,
     )]
-    pub buyer_holder_position: Account<'info, HolderPosition>,
+    pub buyer_holder_position: Box<Account<'info, HolderPosition>>,
 
     #[account(
         mut,
@@ -80,7 +80,7 @@ pub struct BuyResale<'info>{
         constraint = listing.mint == mint.key(),
         close = seller,
     )]
-    pub listing: Account<'info, Listing>,
+    pub listing: Box<Account<'info, Listing>>,
     
 
     pub system_program: Program<'info, System>,

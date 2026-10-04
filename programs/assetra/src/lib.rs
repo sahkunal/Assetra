@@ -6,7 +6,7 @@ pub mod state;
 
 use crate ::instructions::*;
 
-declare_id!("4d12U8m27YFKwReRAsRQKrF7aoJ5W8mz3FsVYGUXJLAG");
+declare_id!("FmS7DSf1d5KGNQtVy6usXFaHi7fNnTtiJofHZSQzGKYi");
 
 #[program]
 pub mod assetra {

@@ -60,8 +60,9 @@ fn register_creator_rejects_oversized_display_name() {
         .instruction()
         .unwrap();
 
-    let result = ctx.execute_instruction(ix, &[&authority]);
-    assert!(result.is_err(), "expected oversized display_name to be rejected");
+    ctx.execute_instruction(ix, &[&authority])
+        .unwrap()
+        .assert_anchor_error("DisplayNameTooLong");
 }
 
 #[test]
@@ -175,6 +176,7 @@ fn create_track_rejects_zero_tokenized_bps() {
         .instruction()
         .unwrap();
 
-    let result = ctx.execute_instruction(ix, &[&authority]);
-    assert!(result.is_err(), "expected zero tokenized_bps to be rejected");
+    ctx.execute_instruction(ix, &[&authority])
+        .unwrap()
+        .assert_failure();
 }

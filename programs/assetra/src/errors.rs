@@ -1,6 +1,5 @@
 use anchor_lang::prelude::*;
 
-use crate::errors::AssetraError::Unauthorized;
 
 #[error_code]
 pub enum AssetraError {

@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-assetra = "4d12U8m27YFKwReRAsRQKrF7aoJ5W8mz3FsVYGUXJLAG"
+assetra = "FmS7DSf1d5KGNQtVy6usXFaHi7fNnTtiJofHZSQzGKYi"
 
 [provider]
 cluster = "localnet"
