@@ -7,3 +7,14 @@ Flow: Creator registers (wallet + self-attested rights) → registers the track 
 
 
 (psps, work is going on)
+
+
+### Screenshots of Tests passing
+
+Assetra\Proof\1.png
+
+![alt text](image.png)
+---
+Assetra\Proof\2.png
+
+![alt text](image-2.png)
