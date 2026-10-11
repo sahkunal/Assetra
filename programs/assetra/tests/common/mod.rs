@@ -3,6 +3,7 @@
 use anchor_litesvm::{AnchorContext, AnchorLiteSVM};
 use litesvm_utils::{Keypair, Pubkey, Signer, TestHelpers};
 
+
 pub const PROGRAM_SO_PATH: &str = "../../target/deploy/assetra.so";
 pub const PROGRAM_KEYPAIR_PATH: &str = "../../target/deploy/assetra-keypair.json";
 
@@ -43,7 +44,7 @@ pub fn track_pda(program_id: &Pubkey, authority: &Pubkey, track_id: u64) -> Pubk
     .0
 }
 
-/*pub fn mint_pda(program_id: &Pubkey, track: &Pubkey) -> Pubkey {
+pub fn mint_pda(program_id: &Pubkey, track: &Pubkey) -> Pubkey {
     Pubkey::find_program_address(&[b"mint", track.as_ref()], program_id).0
 }
 
@@ -61,4 +62,4 @@ pub fn holder_position_pda(program_id: &Pubkey, track: &Pubkey, holder: &Pubkey)
         program_id,
     )
     .0
-}*/
+}
