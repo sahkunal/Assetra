@@ -666,6 +666,7 @@ dependencies = [
  "litesvm-utils",
  "serde_json",
  "solana-account",
+ "spl-associated-token-account",
  "spl-token",
 ]
 
