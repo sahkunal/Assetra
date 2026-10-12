@@ -77,7 +77,7 @@ pub fn handler(ctx: Context<BuyTokens>, amount: u64) -> Result<()> {
     );
 
     let track = &ctx.accounts.track;
-    let numerator = (track.declared_annual_revenue as u128)
+    let numerator = (track.verified_annual_revenue as u128)
         .checked_mul(track.valuation_multiple_bps as u128)
         .expect("price numerator overflow: revenue * multiple")
         .checked_mul(track.tokenized_bps as u128)

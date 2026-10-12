@@ -6,7 +6,7 @@ pub mod state;
 
 use crate::instructions::*;
 
-declare_id!("FRup435mzkDZKqGRpcP7siU1YGGeKVG1Y8bbWCwrKpdD");
+declare_id!("FmS7DSf1d5KGNQtVy6usXFaHi7fNnTtiJofHZSQzGKYi");
 
 #[program]
 pub mod assetra {
@@ -42,6 +42,18 @@ pub mod assetra {
             valuation_multiple_bps,
             token_supply,
         )
+    }
+
+    pub fn initialize_config(ctx: Context<InitializeConfig>, verifier: Pubkey) -> Result<()> {
+        instructions::initialize_config::handler(ctx, verifier)
+    }
+
+    pub fn set_verifier(ctx: Context<SetVerifier>, new_verifier: Pubkey) -> Result<()> {
+        instructions::set_verifier::handler(ctx, new_verifier)
+    }
+
+    pub fn verify_track(ctx: Context<VerifyTrack>, verified_annual_revenue: u64) -> Result<()> {
+        instructions::verify_track::handler(ctx, verified_annual_revenue)
     }
 
     pub fn mint_track_tokens(ctx: Context<MintTrackTokens>) -> Result<()> {

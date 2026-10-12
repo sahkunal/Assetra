@@ -29,6 +29,9 @@ pub struct ListResale<'info> {
     )]
     pub seller_token_account: InterfaceAccount<'info, TokenAccount>,
 
+    #[account(
+        constraint = Some(mint.key()) == track.mint @ AssetraError::InvalidMint,
+    )]
     pub mint: InterfaceAccount<'info, Mint>,
 
     #[account(

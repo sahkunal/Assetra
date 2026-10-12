@@ -5,6 +5,7 @@ pub const SEED_MINT: &[u8] = b"mint";
 pub const SEED_VAULT: &[u8] = b"vault";
 pub const SEED_REVENUE_POOL: &[u8] = b"revenue_pool";
 pub const SEED_HOLDER_POSITION: &[u8] = b"holder_position";
+pub const SEED_CONFIG: &[u8] = b"config";
 pub const SEED_LISTING: &[u8] = b"listing";
 
 pub const REVENUE_PRECISION: u128 = 1_000_000_000_000; // 10^12

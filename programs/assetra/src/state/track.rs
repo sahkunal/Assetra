@@ -14,6 +14,8 @@ pub struct Track {
     pub audio_preview_uri: String,
 
     pub declared_annual_revenue: u64,
+    pub verified_annual_revenue: u64,
+    pub verified_at: i64,
     pub tokenized_bps: u16,
 
     pub valuation_multiple_bps: u32,
@@ -29,6 +31,7 @@ pub struct Track {
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, Copy, PartialEq, Eq, Debug)]
 pub enum TrackStatus {
     Configured,
+    Verified,
     Minted,
 }
 
@@ -43,6 +46,8 @@ impl Track {
         + 4 + MAX_URI_LEN // cover_art_uri
         + 4 + MAX_URI_LEN // audio_preview_uri
         + 8  // declared_annual_revenue
+        + 8  // verified_annual_revenue
+        + 8  // verified_at
         + 2  // tokenized_bps
         + 4  // valuation_multiple_bps
         + 8  // token_supply

@@ -75,6 +75,8 @@ fn mint_track(
     authority: &litesvm_utils::Keypair,
     track: litesvm_utils::Pubkey,
 ) {
+    common::verify_track(ctx, track, 500_000);
+
     let mint = mint_pda(&ctx.program_id, &track);
     let vault = vault_pda(&ctx.program_id, &track);
 

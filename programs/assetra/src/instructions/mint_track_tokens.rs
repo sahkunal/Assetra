@@ -17,7 +17,7 @@ pub struct MintTrackTokens<'info> {
         track.track_id.to_le_bytes().as_ref()],
         bump= track.bump,
         constraint= track.creator == authority.key() @AssetraError::Unauthorized,
-        constraint= track.status == TrackStatus::Configured @AssetraError::InvalidTrackStatus,
+        constraint= track.status == TrackStatus::Verified @AssetraError::InvalidTrackStatus,
     )]
     pub track: Account<'info, Track>,
 

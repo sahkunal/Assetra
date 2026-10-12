@@ -76,6 +76,8 @@ pub fn handler(
     track.cover_art_uri = cover_art_uri;
     track.audio_preview_uri = audio_preview_uri;
     track.declared_annual_revenue = declared_annual_revenue;
+    track.verified_annual_revenue = 0;
+    track.verified_at = 0;
     track.tokenized_bps = tokenized_bps;
     track.valuation_multiple_bps = valuation_multiple_bps;
     track.token_supply = token_supply;

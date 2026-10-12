@@ -63,6 +63,8 @@ fn setup_pool() -> (AnchorContext, Keypair, Pubkey, Pubkey) {
         .unwrap()
         .assert_success();
 
+    common::verify_track(&mut ctx, track, 500_000);
+
     let mint = mint_pda(&ctx.program_id, &track);
     let vault = vault_pda(&ctx.program_id, &track);
 

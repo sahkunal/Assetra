@@ -40,4 +40,8 @@ pub enum AssetraError {
     InvalidListingPrice,
     #[msg("Seller does not hold enough tokens to cover this listing.")]
     InsufficientListedBalance,
+    #[msg("Verified annual revenue must be greater than zero.")]
+    InvalidVerifiedRevenue,
+    #[msg("Mint does not match this track's token mint.")]
+    InvalidMint,
 }
